@@ -1,0 +1,55 @@
+@import '../../styles/variables';
+
+.modal {
+  background-color: $modal-bg-color;
+  border: 1px solid $secondary-text-color;
+  border-radius: 0.625rem;
+
+  display: block;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+
+  // box-shadow is used instead of ::backdrop so a fade transition is possible. (::backdrop doesn't support it)
+  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0);
+  opacity: 0;
+  transition: .5s cubic-bezier(.4, 0, .2, 1);
+  transition-property: opacity, box-shadow;
+  pointer-events: none;
+
+  &.backdrop-fade {
+    box-shadow: 0 0 0 100vh $modal-backdrop-color;
+  }
+
+  &[open] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &>* {
+    color: $secondary-text-color;
+  }
+
+  // Use Invisible backdrop to get click events outside modal. (Closes the modal)
+  &::backdrop {
+    opacity: 1;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    color: $secondary-text-color;
+    fill: currentColor;
+  }
+}

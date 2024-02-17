@@ -1,0 +1,105 @@
+@import './variables';
+
+@font-face {
+  font-family: 'Thick Thinks';
+  src: url('../assets/fonts/Thick-Thinks.ttf');
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: $primary-text-color;
+  background-color: $bg-color;
+  background-image: url('/bg-pattern.svg');
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ol,
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-height: 100vh;
+
+    #root {
+      height: 100%;
+
+      main {
+        flex: 1;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: auto;
+      }
+
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .toast {
+        background-color: $modal-bg-color;
+        color: $secondary-text-color;
+        border: 1px solid $secondary-text-color;
+      }
+
+      .success svg {
+        fill: $logo-green;
+      }
+
+      .fit-pagination footer {
+        position: sticky;
+        bottom: 0;
+        margin-top: auto;
+        background: rgb(255, 245, 238);
+        border-top: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 4rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $tablet-breakpoint) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: $mobile-large-breakpoint) {
+  html {
+    font-size: 12px;
+  }
+}

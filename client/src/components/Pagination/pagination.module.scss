@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+
+  button {
+    $size: 3rem;
+    font-size: 1.2rem;
+    appearance: none;
+    font-weight: 900;
+    padding: 0.5rem;
+    border: 1px solid $primary-text-color;
+    height: $size;
+    width: $size;
+    background: white;
+    margin-left: -0.125rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    &[disabled] img {
+      opacity: .4;
+    }
+
+    &:not(.selected, [disabled]) {
+      cursor: pointer;
+    }
+
+    &.selected {
+      background-color: rgb(161, 127, 188);
+      pointer-events: none;
+    }
+
+    .flip {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+  }
+}

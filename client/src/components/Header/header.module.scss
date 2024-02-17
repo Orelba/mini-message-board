@@ -1,0 +1,77 @@
+@import '../../styles/variables';
+
+.header {
+  text-align: center;
+  border-top: 1px solid $primary-text-color;
+  border-bottom: 1px solid $primary-text-color;
+  background: rgb(255, 245, 238);
+
+  position: sticky;
+  top: 0;
+
+  .logo {
+    $size: 3.125rem;
+
+    height: $size;
+    width: $size;
+  }
+
+  .nav {
+    display: flex;
+    padding: 0.625rem 1.875rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $primary-text-color;
+
+    &>* {
+      flex-shrink: 0;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 3.125rem;
+      padding: 0.5rem;
+
+      .link {
+        text-decoration: none;
+
+        &:visited {
+          color: inherit;
+        }
+      }
+
+      .github-icon {
+        $size: 2.5rem;
+        height: $size;
+        width: $size;
+      }
+    }
+  }
+
+  .top-text {
+    color: $primary-text-color;
+    font-family: "Thick Thinks";
+    font-size: min(12.5vw, 240px);
+    font-weight: 400;
+    height: min(11.25vw, 216px);
+  }
+}
+
+@media only screen and (max-width: $mobile-large-breakpoint) {
+  .header>.nav {
+    padding: $mobile-padding;
+    border-bottom: revert;
+
+    .right {
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      gap: 1rem;
+    }
+  }
+
+  .top-text {
+    display: none;
+  }
+}
