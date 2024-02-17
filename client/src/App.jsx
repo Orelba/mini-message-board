@@ -18,13 +18,14 @@ function App() {
 
   const fetchMessages = async (page = 1) => {
     try {
-      const response = await axios.get(`/api/messages?page=${page}`)
+      const apiURL = (import.meta.env.MODE === 'development') ? '' : 'https://boardy-backend.vercel.app'
+      const response = await axios.get(`${apiURL}/api/messages?page=${page}`)
+      console.log(response)
       setData(response.data)
     } catch (error) {
       console.error(error)
     }
   }
-
   // Ensure the footer sticks to the bottom of the viewport if the page content height exceeds the viewport height.
   const handleFitFooterInScreen = (ref) => {
     if (ref.current) {
