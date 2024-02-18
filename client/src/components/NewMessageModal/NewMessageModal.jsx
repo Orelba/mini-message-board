@@ -8,6 +8,9 @@ export default function NewMessageModal({ isOpen, handleCloseModal, goToFirstPag
   const modalRef = useRef(null)
   const [reRenderTrigger, setReRenderTrigger] = useState(false)
 
+  // Make body not scrollabe when modal is open
+  isOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = ''
+
   if (modalRef.current) {
     if (isOpen) {
       modalRef.current.showModal()

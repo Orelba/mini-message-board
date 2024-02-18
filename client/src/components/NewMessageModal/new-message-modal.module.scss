@@ -22,7 +22,7 @@
   pointer-events: none;
 
   &.backdrop-fade {
-    box-shadow: 0 0 0 100vh $modal-backdrop-color;
+    box-shadow: 0 0 0 1000vh $modal-backdrop-color;
   }
 
   &[open] {
