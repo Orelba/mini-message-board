@@ -21,7 +21,6 @@ function App() {
     try {
       const apiURL = getAPIURL()
       const response = await axios.get(`${apiURL}/api/messages?page=${page}`)
-      console.log(response)
       setData(response.data)
     } catch (error) {
       console.error(error)
