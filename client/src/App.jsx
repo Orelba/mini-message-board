@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import axios from 'axios'
+import getAPIURL from './utils/getApiURL'
 import Header from './components/Header/Header'
 import NewMessageModal from './components/NewMessageModal/NewMessageModal'
 import MessageList from './components/MessageList/MessageList'
@@ -18,7 +19,7 @@ function App() {
 
   const fetchMessages = async (page = 1) => {
     try {
-      const apiURL = (import.meta.env.MODE === 'development') ? '' : 'https://boardy-backend.vercel.app'
+      const apiURL = getAPIURL()
       const response = await axios.get(`${apiURL}/api/messages?page=${page}`)
       console.log(response)
       setData(response.data)

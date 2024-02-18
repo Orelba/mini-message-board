@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
 import styles from './new-message-form.module.scss'
 import axios from 'axios'
+import getAPIURL from '../../utils/getApiURL'
 import cx from 'classnames'
 import Button from '../Button/Button'
 
@@ -34,7 +35,8 @@ export default function NewMessageForm({ handleCloseModal, goToFirstPage, reRend
     e.preventDefault()
 
     try {
-      await axios.post('/api/messages/new', formData)
+      const apiURL = getAPIURL()
+      await axios.post(`${apiURL}/api/messages/new`, formData)
       setFormData(emptyForm)
       handleCloseModal()
       goToFirstPage()
