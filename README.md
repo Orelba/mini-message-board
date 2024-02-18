@@ -1,1 +1,1 @@
-# Mini Message Board
+# Boardy - Mini Message Board
