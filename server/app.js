@@ -22,7 +22,7 @@ async function main() {
 app.use(logger('dev'))
 app.use(cors(
   {
-    origin: ['https://boardy-backend.vercel.app'],
+    origin: ['https://boardy-messages.vercel.app'],
     methods: ['POST', 'GET'],
     credentials: true,
   }
