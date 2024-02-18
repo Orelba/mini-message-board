@@ -22,10 +22,12 @@ function App() {
       const apiURL = getAPIURL()
       const response = await axios.get(`${apiURL}/api/messages?page=${page}`)
       setData(response.data)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       console.error(error)
     }
   }
+
   // Ensure the footer sticks to the bottom of the viewport if the page content height exceeds the viewport height.
   const handleFitFooterInScreen = (ref) => {
     if (ref.current) {

@@ -41,6 +41,7 @@ export default function NewMessageForm({ handleCloseModal, goToFirstPage, reRend
       handleCloseModal()
       goToFirstPage()
       notifyUser('Your message has been added successfully!', 'success')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       if (error.response && error.response.status === 422) {
         const errors = error.response.data
