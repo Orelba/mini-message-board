@@ -9,6 +9,7 @@ import Button from '../Button/Button'
 export default function NewMessageForm({ handleCloseModal, goToFirstPage, reRenderForm, notifyUser }) {
   const [formData, setFormData] = useState(emptyForm)
   const [formErrors, setFormErrors] = useState([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   let messageError = formErrors.find(error => error.path === 'text')
   let nameError = formErrors.find(error => error.path === 'user')
@@ -33,6 +34,7 @@ export default function NewMessageForm({ handleCloseModal, goToFirstPage, reRend
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsSubmitting(true)
 
     try {
       const apiURL = getAPIURL()
@@ -50,6 +52,8 @@ export default function NewMessageForm({ handleCloseModal, goToFirstPage, reRend
         // Handle other errors
         console.error(error)
       }
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -89,7 +93,7 @@ export default function NewMessageForm({ handleCloseModal, goToFirstPage, reRend
         />
         {nameError && <span className={styles.error}>{nameError.msg}</span>}
       </div>
-      <Button>Submit</Button>
+      <Button className={styles['submit-button']} disabled={isSubmitting}>Submit</Button>
     </form>
   )
 }

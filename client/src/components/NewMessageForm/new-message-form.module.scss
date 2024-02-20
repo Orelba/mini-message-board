@@ -44,12 +44,16 @@
       border-color: $input-invalid-color;
     }
 
-    .message-input + .error {
+    .message-input+.error {
       top: 9.375rem;
     }
 
-    .name-input + .error {
+    .name-input+.error {
       top: 3.125rem;
     }
+  }
+
+  .submit-button:disabled {
+    opacity: 0.4;
   }
 }
