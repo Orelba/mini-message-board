@@ -8,6 +8,9 @@ require('dotenv').config()
 
 const messagesRouter = require('./routes/messages')
 
+const compression = require('compression')
+const helmet = require('helmet')
+
 const app = express()
 
 // mongoDB connection setup
@@ -30,6 +33,21 @@ app.use(cors(
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+
+// Set secure HTTP response headers, allow Google fonts to be loaded
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        'font-src': ['self', 'fonts.googleapis.com', 'fonts.gstatic.com']
+      }
+    }
+  })
+)
+
+// Compress response bodies for all requests
+app.use(compression())
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api/messages', messagesRouter)
