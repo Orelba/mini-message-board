@@ -21,8 +21,7 @@ function App() {
     try {
       const apiURL = getAPIURL()
       const response = await axios.get(`${apiURL}/api/messages?page=${page}`)
-      setData(response.data)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return response.data
     } catch (error) {
       console.error(error)
     }
@@ -50,8 +49,22 @@ function App() {
   }, [])
 
   // Fetch Data after initial render and page change
+  // Prevents race conditions by ignoring outdated fetch requests.
   useEffect(() => {
-    fetchMessages(page)
+    let ignore = false
+
+    fetchMessages(page).then(result => {
+      // Only update data if this effect is still relevant
+      if (!ignore) {
+        setData(result)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    })
+
+    // Cleanup function to ignore outdated fetch requests
+    return () => {
+      ignore = true
+    }
   }, [page])
 
   // After Fetch
@@ -92,7 +105,10 @@ function App() {
 
   const goToFirstPage = () => {
     if (page === 1) {
-      fetchMessages()
+      fetchMessages(page).then(result => {
+        setData(result)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      })
     } else {
       setPage(1)
     }
